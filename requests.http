@@ -1,0 +1,94 @@
+### Sample requests — open in VS Code with the "REST Client" extension and click "Send Request".
+@baseUrl = http://localhost:4000/api
+
+### Health check
+GET {{baseUrl}}/health
+
+### ---------- RECIPES ----------
+
+### Create a recipe
+POST {{baseUrl}}/recipes
+Content-Type: application/json
+
+{
+  "name": "Chicken Adobo",
+  "servings": 4,
+  "ingredients": [
+    { "name": "Chicken", "qty": "1 kg" },
+    { "name": "Soy Sauce", "qty": "1/2 cup" },
+    { "name": "Vinegar", "qty": "1/3 cup" }
+  ],
+  "instructions": "Marinate, simmer, reduce."
+}
+
+### Get all recipes
+GET {{baseUrl}}/recipes
+
+### Search recipes by name
+GET {{baseUrl}}/recipes?search=adobo
+
+### Get one recipe (replace with a real _id)
+GET {{baseUrl}}/recipes/REPLACE_WITH_ID
+
+### Update a recipe
+PUT {{baseUrl}}/recipes/REPLACE_WITH_ID
+Content-Type: application/json
+
+{
+  "name": "Pork Adobo",
+  "servings": 6,
+  "ingredients": [
+    { "name": "Pork belly", "qty": "1 kg" },
+    { "name": "Soy Sauce", "qty": "1/2 cup" }
+  ]
+}
+
+### Delete a recipe
+DELETE {{baseUrl}}/recipes/REPLACE_WITH_ID
+
+### ---------- USERS ----------
+
+### Create a user
+POST {{baseUrl}}/users
+Content-Type: application/json
+
+{
+  "firstName": "Juan",
+  "lastName": "Dela Cruz",
+  "email": "juan@example.com",
+  "age": 20
+}
+
+### Get all users
+GET {{baseUrl}}/users
+
+### Get one user
+GET {{baseUrl}}/users/REPLACE_WITH_ID
+
+### Update a user
+PUT {{baseUrl}}/users/REPLACE_WITH_ID
+Content-Type: application/json
+
+{
+  "firstName": "Juan",
+  "lastName": "Dela Cruz",
+  "email": "juan.delacruz@example.com",
+  "age": 21
+}
+
+### Delete a user
+DELETE {{baseUrl}}/users/REPLACE_WITH_ID
+
+### ---------- ERROR CASES ----------
+
+### 400 — fails validation
+POST {{baseUrl}}/recipes
+Content-Type: application/json
+
+{ "servings": 0 }
+
+### 404 — invalid ObjectId format (CastError)
+GET {{baseUrl}}/recipes/not-a-valid-id
+
+### 404 — unknown route
+GET {{baseUrl}}/nothing-here

@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm -v)",
+      "Bash(node -p \"require\\('./node_modules/dotenv/package.json'\\).main\")",
+      "Bash(node src/server.js)",
+      "Bash(docker info *)",
+      "Bash(node e2e.js)",
+      "Bash(node -e ' *)"
+    ]
+  }
+}
